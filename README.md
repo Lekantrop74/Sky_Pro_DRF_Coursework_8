@@ -1,4 +1,4 @@
-# Sky_Pro_DRF_Coursework_7
+# Sky_Pro_DRF_Coursework_8
 
 # Проект "Трекер полезных привычек"
 
@@ -26,41 +26,40 @@
 
 ## Запуск проекта
 
-1. Склонируйте репозиторий:
-   - https://github.com/Lekantrop74/Sky_Pro_DRF_Coursework_7.git
+   1. Склонируйте репозиторий:
+      - https://github.com/Lekantrop74/Sky_Pro_DRF_Coursework_7.git
 
+   2. Для запуска проекта необходимо установить docker
+      * https://www.docker.com/
 
-2. Установите зависимости:
-   - pip install -r requirements.txt
+   3. Установите зависимости:
+      * pip install -r requirements.txt
 
+   4. Создайте файл `.env` в корневой директории и заполните необходимые переменные окружения:
+      * BASE_NAME=имя_базы_данных
+      * BASE_USER=пользователь_базы_данных
+      * BASE_PASSWORD=пароль_базы_данных
+      * HOST=хост_базы_данных
+      * PORT=порт_базы_данных
+      * CELERY_BROKER_URL=URL_брокера_Celery
+      * CELERY_RESULT_BACKEND=URL_бэкенда_Celery
+      * TELEGRAM_TOKEN=токен_Telegram_бота
 
-3. Создайте файл `.env` в корневой директории и заполните необходимые переменные окружения:
-   - BASE_NAME=имя_базы_данных
-   - BASE_USER=пользователь_базы_данных
-   - BASE_PASSWORD=пароль_базы_данных
-   - HOST=хост_базы_данных
-   - PORT=порт_базы_данных
-   - CELERY_BROKER_URL=URL_брокера_Celery
-   - CELERY_RESULT_BACKEND=URL_бэкенда_Celery
-   - TELEGRAM_TOKEN=токен_Telegram_бота
+   5. Примените миграции:
+      * python manage.py migrate
 
+   6. Запустите сервер:
+      * python manage.py runserver
 
-5. Примените миграции:
-   - python manage.py migrate
+   7. Запустите Celery для обработки отложенных задач:
+      * celery -A config worker --pool=solo -l INFO
+      * celery -A config beat -l info -S django
 
-
-6. Запустите сервер:
-   - python manage.py runserver
-
-7. Запустите Celery для обработки отложенных задач:
-   - celery -A config worker --pool=solo -l INFO
-   - celery -A config beat -l info -S django
-
-8. Используйте команду AddData для создания пользователей и тестовых привычек
-   - python manage.py AddData
-
-9. Подготовьте телеграм бота для отправки данных (можно использовать данные по умолчанию @SkyProDRFHabit2023_Bot)
-   - Запустите бота командой /start
+   8. Используйте команду AddData для создания пользователей и тестовых привычек
+      * python manage.py AddData
+        
+   9. Подготовьте телеграм бота для отправки данных (можно использовать данные по умолчанию @SkyProDRFHabit2023_Bot)
+      * Запустите бота командой /start
 
 
 % Покрытие тестами
